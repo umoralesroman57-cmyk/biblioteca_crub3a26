@@ -11,9 +11,9 @@ class Prestamo:
         self.fecha_devolucion = fecha_devolucion
         self.devuelto = False # Por defecto el prestamo no ha sido devuelto
 
-        def registrar_devolucion(self):
-            self.devuelto = True
-            self.libro.devolver() # Marcar el libro como disponible nuevamente
+    def registrar_devolucion(self):
+        self.devuelto = True
+        self.libro.devolver() # Marcar el libro como disponible nuevamente
 
-            def mostrar_info(self):
-                return f"Prestamo Id: {self.id_prestamo},Usuario: {self.usuario.nombre},Libro: {self.libro.titulo},Fecha de prestamo: {self.fecha_prestamo},Fecha devolución: {self.fecha_devolucion},Devuelto: {'Si' if self.devuelto else 'No'}"
+    def mostrar_info(self):
+        return f"Prestamo Id: {self.id_prestamo},Usuario: {self.usuario.nombre},Libro: {self.libro.titulo},Fecha de prestamo: {self.fecha_prestamo},Fecha devolución: {self.fecha_devolucion},Devuelto: {'Si' if self.devuelto else 'No'}"
