@@ -27,8 +27,8 @@ def ver_libros():
 
 def insertar_libro():
     titulo = input("Escribe el titulo del nuevo libro: ")
-    autor = int(input("Escribe el id del autor: "))
-    isbn = input("Escriba el isbn del nuevo libro")
+    autor = input("Escribe el id del autor: ")
+    isbn = input("Escriba el isbn del nuevo libro: ")
     disponible = True
     try:
         libro_dao = LibroDAO()

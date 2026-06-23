@@ -32,13 +32,14 @@ class LibroDAO:
     def insertar(self, libro):
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
-        sql = """"
+        sql = """
         INSERT INTO libro (id,titulo, autor, isbn, disponible)
         VALUES (%s, %s, %s, %s,%s)
         """
         cursor.execute(
             sql, 
-            (libro.titulo,
+            (libro.id,
+            libro.titulo,
             libro.autor,
             libro.isbn,
             libro.disponible
@@ -84,17 +85,17 @@ class LibroDAO:
         cursor.close()
         conexion.close()
 
-        def obtener_ultimo_id(self):
-            conexion = Conexion.obtener_conexion()
-            cursor = conexion.cursor()
+    def obtener_ultimo_id(self):
+        conexion = Conexion.obtener_conexion()
+        cursor = conexion.cursor()
 
-            cursor.execute("SELECT id FROM ORDER BY id DESC")
-            resultado = cursor.fetchone()
+        cursor.execute("SELECT id FROM libro ORDER BY id DESC")
+        resultado = cursor.fetchone()
 
-            cursor.close()
-            conexion.close()
+        cursor.close()
+        conexion.close()
 
-            if resultado is None:
-                return 0
-            return resultado[0]
+        if resultado is None:
+            return 0
+        return resultado[0]
                 
