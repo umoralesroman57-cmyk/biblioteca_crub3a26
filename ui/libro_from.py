@@ -1,7 +1,7 @@
 import flet as ft
 
 def libro_form():
-    titulo_input = ft.TextilFiled(
+    titulo_input = ft.TextField(
         label="Titulo del libro: ",
         width = 400
     )
@@ -20,6 +20,25 @@ def libro_form():
         "",
         color = ft.Colors.GREEN
     )
+
+    def guardar_libro(e):
+        # Recupera los valores del TextField
+        titulo = titulo_input.value # nombre_text_field.value
+        autor = autor_input.value
+        isbn = isbn_input.value
+
+        if titulo == "" or autor == "" or isbn == "":
+            mensaje.value = "Todods los campos son obligatorios"
+            mensaje.color = ft.Colors.RED
+        else:
+            mensaje.value = f"Libro '{titulo} listo para insertar"
+            print(f"Titulo: '{titulo}' listo para insertar")
+            mensaje.color = ft.Colors.GREEN
+            titulo_input.value = ""
+            autor_input.value = ""
+            isbn_input.value = ""
+
+            e.page.update()
 
     return ft.Container(
         padding = 30,
@@ -43,8 +62,11 @@ def libro_form():
 
                 ft.ElevatedButton(
                     "Registrar libro",
-                    icon = ft.Icons.SAVE
-                )
+                    icon = ft.Icons.SAVE,
+                    on_click= guardar_libro
+                ),
+
+                mensaje
             ],
             spacing= 15
         )
