@@ -1,6 +1,6 @@
 import flet as ft
 
-def libro_form():
+def libro_form(regresar):
     titulo_input = ft.TextField(
         label="Titulo del libro: ",
         width = 400
@@ -38,7 +38,7 @@ def libro_form():
             autor_input.value = ""
             isbn_input.value = ""
 
-            e.page.update()
+        e.page.update()
 
     return ft.Container(
         padding = 30,
@@ -60,11 +60,20 @@ def libro_form():
                 autor_input,
                 isbn_input,
 
-                ft.ElevatedButton(
-                    "Registrar libro",
-                    icon = ft.Icons.SAVE,
-                    on_click= guardar_libro
-                ),
+                ft.Row(
+                    controls = [
+                    ft.ElevatedButton(
+                        "Registrar libro",
+                        icon = ft.Icons.SAVE,
+                        on_click= guardar_libro
+                    ),
+                    ft.OutlinedButton(
+                        "Regresar",
+                        icon = ft.Icons.ARROW_BACK,
+                        on_click = lambda e: regresar()
+                    )
+                    ],
+                ),    
 
                 mensaje
             ],

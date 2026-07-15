@@ -23,20 +23,27 @@ def main_windows(page: ft.Page):
 
     # Widget Container
     contenido = ft.Container(
-    content = ft.Column(
-        controls = [
-            titulo,
-            subtitulo
-        ],
-        spacing = 10,
-    ),
     padding = 30,
     expand = True
     )
 
+    def inicio():
+        return ft.Column(
+        controls = [
+            titulo,
+            subtitulo
+        ],
+        spacing = 10
+    )
+        
+    def mostrar_inicio(e = None):
+        contenido.content = inicio()
+        page.update()
+
+
     # Reacciona al clic del botón de libros en el menú lateral
-    def insertar_libros(e):
-        contenido.content = libro_form()
+    def mostrar_insertar_libros(e = None):
+        contenido.content = libro_form(mostrar_inicio)
         page.update()
 
     menu_lateral = ft.Container(
@@ -58,10 +65,16 @@ def main_windows(page: ft.Page):
                 ),
                 ft.Divider(color = ft.Colors.BLUE_GREY_700),
                 ft.ElevatedButton(
+                    "Inicio",
+                    icon = ft.Icons.HOME,
+                    width = 180,
+                    on_click = mostrar_inicio,
+                ),
+                ft.ElevatedButton(
                     "Libros",
                     icon = ft.Icons.BOOK,
                     width = 180,
-                    on_click= insertar_libros
+                    on_click= mostrar_insertar_libros
                 ),
                 ft.ElevatedButton(
                     "Prestamos",
@@ -92,3 +105,5 @@ def main_windows(page: ft.Page):
     )
 
     page.add(layout)
+
+    mostrar_inicio()
